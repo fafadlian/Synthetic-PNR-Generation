@@ -1,4 +1,4 @@
-Synthetic Travel Booking Simulation Project
+# Synthetic Travel Booking Simulation Project
 Overview
 This project simulates the process of generating and managing synthetic data related to travel bookings, encompassing the generation of synthetic Passenger Name Record (PNR) data, determining flight routing, generating booking groups, and selecting specific flights for bookings. It is designed to simulate realistic travel behaviors and preferences, facilitating analysis or modeling in travel and aviation-related applications.
 
