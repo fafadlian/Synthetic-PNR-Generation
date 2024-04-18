@@ -1,33 +1,34 @@
-Synthetic Travel Booking Simulation Project
-Overview
-This project simulates the process of generating and managing synthetic data related to travel bookings, encompassing the generation of synthetic Passenger Name Record (PNR) data, determining flight routing, generating booking groups, and selecting specific flights for bookings. It is designed to simulate realistic travel behaviors and preferences, facilitating analysis or modeling in travel and aviation-related applications.
+# Synthetic Travel Booking Simulation Project
 
-Project Structure
-The project is structured into four main scripts, each serving a distinct purpose in the simulation pipeline:
+## Overview
+This project simulates the generation and management of synthetic data related to travel bookings. It specifically focuses on creating Passenger Name Records (PNR), determining flight routes, generating booking groups, and selecting flights for those bookings. The goal is to simulate realistic travel behaviors and preferences to support analysis and modeling in travel and aviation-related applications.
 
-Synthetic PNR Data Generation
-Routing Code
-Booking Groups Generation
-Flight Selection
-1. Synthetic PNR Data Generation
-File: HH_P_Gen.py
+## Project Structure
+The project is divided into four main scripts, each responsible for a specific part of the travel booking simulation process:
 
-Function: Generates synthetic PNR data, including information about households and their demographic characteristics. It establishes the foundational dataset of potential travelers, their geographic locations, and travel preferences.
+### 1. Synthetic PNR Data Generation
+- **File:** GeneratePopulation.py
+- **Directory:** src/
+- **Purpose:** This script is the cornerstone of our data generation process. It creates a synthetic population database that models potential travelers. Each record includes detailed demographic and geographic information, establishing a realistic base for simulating travel behaviors.
+- **Key Features:**
+  - **Demographic Profiles:** Generates detailed profiles for synthetic individuals, including age, gender, and household size.
+  - **Geographic Distribution:** Assigns geographic locations based on real-world population statistics to reflect plausible living areas for individuals.
+  - **Travel Preferences Modeling:** Integrates travel preferences tailored to demographic and geographic data, setting the stage for realistic travel scenario simulations.
+  - **Person and Individual Identities:** Outputs a comprehensive dataset that serves as the input for subsequent simulation steps that includes Firstname, Surname, DOB, ID, etc.
+
 
 2. Routing Code
 File: Routing.py
-
-Function: Processes and generates routing information for flights, determining feasible direct and indirect routes between airports. It calculates the shortest paths and manages the availability and selection of direct flights based on geographic constraints and connections.
-
+Purpose:
+Manages the creation of feasible flight routes between airports, including direct and connecting flights. Utilizes algorithms to find the shortest and most realistic paths between locations.
 3. Booking Groups Generation
 File: Booking_Groups_Gen.py
-
-Function: Generates synthetic booking groups based on household data and routing information. It simulates the decision-making process for travel, including selecting origin and destination cities, determining travel purposes (e.g., business, leisure), and assigning stay durations.
-
+Purpose:
+Simulates the formation of travel groups based on the synthetic population data. It models decisions such as choosing travel destinations, trip purposes, and duration of stay.
 4. Flight Selection
 File: Flight_Selection.py
-
-Function: Selects specific flights for the synthetic booking groups, considering both outbound and return trips. It matches bookings with available flights based on schedules, capacity, and itineraries, updating the flights' occupancy and booking lists accordingly.
+Purpose:
+Handles the assignment of synthetic booking groups to actual flights, ensuring that the selections adhere to flight schedules, capacity limits, and planned itineraries.
 
 Execution Order
 To simulate the entire process of planning and booking travel accurately, execute the scripts in the following order:
