@@ -13,7 +13,6 @@ The project is divided into four main scripts, each responsible for a specific p
 - **Key Features:**
   - **Demographic Profiles:** Generates detailed profiles for synthetic individuals, including age, gender, and household size.
   - **Geographic Distribution:** Assigns geographic locations based on real-world population statistics to reflect plausible living areas for individuals.
-  - **Travel Preferences Modeling:** Integrates travel preferences tailored to demographic and geographic data, setting the stage for realistic travel scenario simulations.
   - **Person and Individual Identities:** Outputs a comprehensive dataset that serves as the input for subsequent simulation steps that includes Firstname, Surname, DOB, ID, etc.
 
 
