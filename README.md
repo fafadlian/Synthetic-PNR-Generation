@@ -30,7 +30,30 @@ The project is divided into four main scripts, each responsible for a specific p
   - **Flight Options Generation:** Generates a list of available flight options based on the given origin, destination, and travel dates.
   - **Flight Selection:** Selects the most suitable flights for each passenger based on their preferences, such as price, airline, departure time, etc.
   - **Booking Management:** Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
-  
+
+### 3. Build XML
+- **Main File:** BuildXML.py.py
+/**
+ * @file FlightBooking.py
+ * @brief Handles the flight booking process in the travel booking simulation.
+ *
+ * The FlightBooking.py module is responsible for generating flight options, selecting flights based on passenger preferences, and managing the booking of flights for the simulated passengers.
+ *
+ * @section Related_Files Related Files
+ * - src/BUILD_xml.py
+ *
+ * @section Key_Features Key Features
+ * - Flight Options Generation: Generates a list of available flight options based on the given origin, destination, and travel dates.
+ * - Flight Selection: Selects the most suitable flights for each passenger based on their preferences, such as price, airline, departure time, etc.
+ * - Booking Management: Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
+ */
+- **Related Files:** src/BUILD_xml.py
+- **Purpose:** The purpose of FlightBooking.py is to handle the flight booking process in the travel booking simulation. It is responsible for generating flight options, selecting flights based on passenger preferences, and managing the booking of flights for the simulated passengers.
+- **Key Features:**
+  - **Flight Options Generation:** Generates a list of available flight options based on the given origin, destination, and travel dates.
+  - **Flight Selection:** Selects the most suitable flights for each passenger based on their preferences, such as price, airline, departure time, etc.
+  - **Booking Management:** Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
+
 
 
 
