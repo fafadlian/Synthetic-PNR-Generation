@@ -1,0 +1,313 @@
+GenderHOH,AgeHOH,SizeHH,HHID,HH_ISO,HHType,Lang,Lang_P,Surname,Address,PostCode,Country,NationalityLP,NationalityNat
+M,79,1,ALB_0,ALB,1B,,ko_KR,김,"64427 Porter Spring
+North Marissa, OH 94241",18335,ALB,ko_KR,GBR
+M,39,3,ALB_1,ALB,2A,,,Oneal,"4474 Mccullough Lane
+Georgeborough, PA 06412",75286,ALB,,ALB
+M,39,5,ALB_2,ALB,2A,,nl_BE,Berghmans,"4346 Adam Underpass
+Andrewtown, SD 02034",19947,ALB,nl_BE,SUR
+M,66,3,ALB_3,ALB,3AB,,,Bentley,"44177 Larry Locks
+East Nicole, MO 19158",04492,ALB,,ALB
+F,54,1,ALB_4,ALB,1B,,,Sullivan,"648 Bauer Lights
+Andersonborough, MP 94474",99636,ALB,,ALB
+M,53,2,ALB_5,ALB,2B,,,Cabrera,"17674 Jonathan Shoals
+Jessicachester, PW 75180",31882,ALB,,ALB
+F,76,1,AUT_0,AUT,1B,de_AT,de_AT,Hafner,"Hemetsbergerstr. 996
+5806 Bad Leonfelden",9728,AUT,de_AT,AUT
+M,51,2,BGR_0,BGR,2B,,,Frazier,"USS Collins
+FPO AA 89020",78600,BGR,,BGR
+M,66,2,BLR_0,BLR,2B,ru_RU,ru_RU,Фокин,"к. Кижи, пр. Репина, д. 5/3 стр. 352, 540098",816792,BLR,ru_RU,BLR
+M,59,1,BWA_0,BWA,1B,af_ZA,af_ZA,Webb,"7270 Laura Parks
+East Teresaport, WA 61054",82620,BWA,af_ZA,BWA
+M,37,2,BWA_1,BWA,3AB,af_ZA,af_ZA,Miller,"66845 Maynard Course Suite 131
+South Robert, WV 91538",43391,BWA,af_ZA,BWA
+M,43,3,BWA_2,BWA,2A,af_ZA,af_ZA,Moore,"71870 Hall Lodge
+Port David, MS 67044",30646,BWA,af_ZA,BWA
+M,68,2,BWA_3,BWA,2B,af_ZA,af_ZA,Green,"027 Rodriguez Garden
+Joneshaven, IN 61167",92365,BWA,af_ZA,BWA
+M,35,5,BWA_4,BWA,2A,af_ZA,af_ZA,Pena,"6787 Jenkins Glens
+Ashleyfurt, HI 91999",55389,BWA,af_ZA,BWA
+M,50,2,BWA_5,BWA,2B,af_ZA,af_ZA,Rivera,"8280 Johnson Stravenue
+West Valerieberg, MA 50685",36315,BWA,af_ZA,BWA
+F,66,2,CHE_0,CHE,2B,fr_CH,fr_CH,Mayor,"rue Bujard
+5939 Bahon (JU)",7397,CHE,fr_CH,CHE
+M,73,3,CMR_0,CMR,3AB,af_ZA,af_ZA,Martin,"50203 Rojas Greens
+West Emily, LA 21922",45017,CMR,af_ZA,CMR
+M,73,2,CMR_1,CMR,2B,af_ZA,af_ZA,Montoya,"941 Castaneda Path
+Jerrychester, TX 79569",16037,CMR,af_ZA,CMR
+M,65,1,CMR_2,CMR,1B,af_ZA,af_ZA,Hill,"9562 Matthew Parks
+Brittanychester, IA 86120",27614,CMR,af_ZA,CMR
+M,56,2,CMR_3,CMR,1A,af_ZA,ko_KR,최,"503 Emily Estates
+West Johnchester, DC 93701",43363,CMR,ko_KR,GHA
+F,48,1,CMR_4,CMR,1B,af_ZA,nl_NL,van Dalem,"5827 Robinson Court
+North Susanborough, PA 13426",95879,CMR,nl_NL,DZA
+M,26,2,CMR_5,CMR,3AB,af_ZA,af_ZA,Perkins,"0362 James Grove
+Joneshaven, MO 89773",76139,CMR,af_ZA,CMR
+M,41,5,CZE_0,CZE,2A,cz_CZ,cz_CZ,Procházka,"Za Valem 123
+787 73 Železná Ruda",222 19,CZE,cz_CZ,CZE
+M,28,3,DEU_0,DEU,3AB,de_DE,de_DE,Carsten,"Trommlerstr. 678
+08601 Gelnhausen",33261,DEU,de_DE,DEU
+M,55,3,DEU_1,DEU,3AB,de_DE,de_DE,Stroh,"Wesackring 6/9
+63190 Germersheim",58496,DEU,de_DE,DEU
+M,27,2,DEU_2,DEU,3AB,de_DE,de_DE,Hertrampf,"Muzaffer-Huhn-Allee 4/5
+81924 Celle",91812,DEU,de_DE,DEU
+M,39,4,DEU_3,DEU,2A,de_DE,de_DE,Steckel,"Ester-Holt-Platz 7
+38617 Spremberg",65545,DEU,de_DE,DEU
+M,48,2,DEU_4,DEU,2B,de_DE,de_DE,Aumann,"Gumprichstraße 346
+87055 Lichtenfels",18275,DEU,de_DE,DEU
+M,46,3,DEU_5,DEU,2A,de_DE,ga_IE,Ó Náradhaigh,"Georgine-Nohlmans-Platz 5
+47440 Badalzungen",52465,DEU,ga_IE,HTI
+M,72,3,DEU_6,DEU,3AB,de_DE,de_DE,Scheibe,"Hofmannallee 0/7
+26202 Nabburg",53055,DEU,de_DE,DEU
+M,67,1,DEU_7,DEU,1B,de_DE,de_DE,Ruppersberger,"Wagenknechtweg 914
+01802 Königs Wusterhausen",22572,DEU,de_DE,DEU
+M,72,4,DJI_0,DJI,3AB,af_ZA,af_ZA,Greene,"58232 Nicholas Heights Suite 181
+Lake Gregorybury, CT 13387",45869,DJI,af_ZA,DJI
+F,42,4,DJI_1,DJI,1A,af_ZA,af_ZA,Miller,"66504 Donald Forks Suite 719
+Lake Ericfurt, LA 18104",93383,DJI,af_ZA,DJI
+M,39,3,DJI_2,DJI,2A,af_ZA,af_ZA,Martinez,"PSC 1649, Box 5343
+APO AP 98127",52955,DJI,af_ZA,DJI
+M,47,3,DJI_3,DJI,2A,af_ZA,ko_KR,류,"PSC 0819, Box 0947
+APO AP 62917",89946,DJI,ko_KR,PER
+M,25,1,DJI_4,DJI,1B,af_ZA,af_ZA,Guerrero,"USS Anderson
+FPO AE 98534",11275,DJI,af_ZA,DJI
+M,41,5,DJI_5,DJI,3AB,af_ZA,af_ZA,Powell,"12418 Tina Extensions
+Meyersshire, WY 37475",17851,DJI,af_ZA,DJI
+M,56,2,DNK_0,DNK,2B,dk_DK,dk_DK,White,"142 Brady Drive
+Nicolasbury, NV 33296",21121,DNK,dk_DK,DNK
+M,43,1,EGY_0,EGY,1B,ar_SA,ar_SA,الجفالي,"77797 قصي Circles Apt. 046
+دؤوبstad, TN 59169",18015,EGY,ar_SA,EGY
+F,70,1,EGY_1,EGY,1B,ar_SA,ar_SA,آل سعود,"Unit 4907 Box 2269
+DPO AP 19590",28806,EGY,ar_SA,EGY
+F,25,2,EGY_2,EGY,2B,ar_SA,ar_SA,آل سعود,"0207 الشايع Spring
+East وريدville, GA 31786",77281,EGY,ar_SA,EGY
+M,68,1,EGY_3,EGY,1B,ar_SA,ar_SA,بقشان,"8420 رمضان Crescent Apt. 869
+New ميثاق, FL 21258",68984,EGY,ar_SA,EGY
+M,49,5,EGY_4,EGY,3AB,ar_SA,ar_SA,مهنا,"874 آل جعفر Spring
+جوانbury, MO 48036",07476,EGY,ar_SA,EGY
+F,41,1,EGY_5,EGY,1B,ar_SA,ar_SA,آل محمد بن علي بن جماز,"3718 المغاولة Crescent Suite 730
+West حمودtown, DC 18584",57750,EGY,ar_SA,EGY
+F,79,1,ESP_0,ESP,1B,es_ES,es_ES,Gaya,"Plaza Otilia Fuente 10
+Baleares, 51702",30505,ESP,es_ES,ESP
+F,35,2,ESP_1,ESP,2B,es_ES,ja_JP,渡辺,"Cañada de María José Sales 920
+Cádiz, 17240",31577,ESP,ja_JP,LVA
+F,70,1,ESP_2,ESP,1B,es_ES,es_ES,Casals,"Paseo de Manuelita Lopez 506 Piso 9 
+Málaga, 41283",21071,ESP,es_ES,ESP
+M,46,1,ETH_0,ETH,1B,af_ZA,af_ZA,Evans,"25513 Mary Loaf Apt. 806
+East Renee, WY 82241",70237,ETH,af_ZA,ETH
+M,76,3,ETH_1,ETH,3AB,af_ZA,en_US,Gonzalez,"001 Holt Lakes
+Fordfort, MD 28229",82919,ETH,en_US,KAZ
+M,72,1,ETH_2,ETH,1B,af_ZA,af_ZA,Watts,"5923 Webb Divide
+West Nicholefurt, AZ 29230",50921,ETH,af_ZA,ETH
+F,59,1,ETH_3,ETH,1B,af_ZA,sl_SI,Žagar,"2664 Nash Pine Suite 489
+New Rebecca, CA 87974",04959,ETH,sl_SI,GIB
+M,26,1,ETH_4,ETH,1B,af_ZA,af_ZA,Ramirez,"923 Roach Extension Suite 098
+Timothyburgh, GA 29425",68792,ETH,af_ZA,ETH
+M,54,2,ETH_5,ETH,2B,af_ZA,af_ZA,Steele,"78041 Jessica Cove Suite 374
+Lake Carrie, MN 11982",55417,ETH,af_ZA,ETH
+M,73,3,FRA_0,FRA,3AB,fr_FR,fr_FR,Blanchet,"4, rue Joséphine Bertin
+68788 Hardy",31200,FRA,fr_FR,FRA
+M,78,2,FRA_1,FRA,3AB,fr_FR,fr_FR,Dumas,"219, rue Adrienne Guillaume
+97316 Bernier-sur-Mer",34325,FRA,fr_FR,FRA
+F,71,1,FRA_2,FRA,1B,fr_FR,fr_FR,Lesage,"51, boulevard de Lesage
+47932 Langlois",20622,FRA,fr_FR,FRA
+F,72,3,FRA_3,FRA,3AB,fr_FR,fr_FR,Lecoq,"rue Dorothée Colin
+45631 Barre-sur-Martins",30896,FRA,fr_FR,FRA
+M,54,3,FRA_4,FRA,2A,fr_FR,fr_FR,Briand,"71, rue Peltier
+50630 Alves-sur-Mer",64677,FRA,fr_FR,FRA
+M,47,3,FRA_5,FRA,2A,fr_FR,fr_FR,Bailly,"67, avenue Julie Gomez
+15487 Macedan",09437,FRA,fr_FR,FRA
+F,58,2,GBR_0,GBR,2B,en_GB,en_GB,Hudson,"638 Vanessa court
+Taylorberg
+E8W 8FH",W36 6XN,GBR,en_GB,GBR
+M,39,1,GBR_1,GBR,1B,en_GB,en_GB,Nelson,"Studio 48
+Howard stream
+North Mohamed
+L01 3RW",GU9B 1LG,GBR,en_GB,GBR
+M,35,6,GBR_2,GBR,2A,en_GB,vi,Ellis,"Flat 7
+Declan knoll
+East Terryport
+S3K 5DG",DL75 3WT,GBR,vi,BHR
+M,39,4,GBR_3,GBR,2A,en_GB,en_GB,Pearce,"108 Ward ways
+Marionshire
+W4 6YU",PR2 3JS,GBR,en_GB,GBR
+M,40,3,GBR_4,GBR,2A,en_GB,en_GB,Sanders,"Flat 81
+Tracey camp
+Millsshire
+L5 0PW",M36 8DA,GBR,en_GB,GBR
+F,48,3,GGY_0,GGY,2A,en_GB,,Arnold,"26 Wilson roads
+South Charlene
+FY1 1NW",B9E 7DY,GGY,,NGA
+F,25,1,GGY_1,GGY,1B,en_GB,en_GB,Shah,"7 Lynn gateway
+West Jay
+B52 7XA",B0 3GD,GGY,en_GB,GGY
+M,27,3,GGY_2,GGY,2A,en_GB,en_GB,Davies,"Flat 03
+Alex plaza
+Jeanhaven
+N7 6RD",KA25 9QD,GGY,en_GB,GGY
+F,52,1,GGY_3,GGY,1B,en_GB,en_GB,Lowe,"Studio 93T
+Grace canyon
+East Paul
+W95 0RX",B20 6DB,GGY,en_GB,GGY
+M,78,3,GGY_4,GGY,3AB,en_GB,en_GB,Akhtar,"31 David keys
+Chloetown
+WC10 7HE",EH50 5XT,GGY,en_GB,GGY
+M,46,1,GGY_5,GGY,1B,en_GB,en_GB,Burton,"844 Joe islands
+Doddton
+IV1 5EA",S94 0WQ,GGY,en_GB,GGY
+M,29,2,GIB_0,GIB,2B,en_GB,en_US,Johnson,"Flat 39l
+Kathleen vista
+West Joanna
+WA4N 6QW",LE6 8TL,GIB,en_US,BHS
+F,45,2,GIB_1,GIB,1A,en_GB,en_GB,Davis,"1 Hodgson bridge
+North Sarah
+DH03 7WQ",NN37 7QZ,GIB,en_GB,GIB
+M,50,3,GIB_2,GIB,2A,en_GB,ar_AE,Beck,"Flat 99B
+Knowles vista
+Jenkinschester
+G2 2GF",W54 2NY,GIB,ar_AE,SUR
+F,65,1,GIB_3,GIB,1B,en_GB,en_AU,Jacobson,"Flat 2
+Thomas shores
+West Gordonmouth
+NR0H 2YD",B9D 9FR,GIB,en_AU,GIB
+M,42,2,GIB_4,GIB,2B,en_GB,en_GB,Clarke,"Flat 05C
+Ryan mountains
+Shirleystad
+HU29 0PB",PO9H 1JQ,GIB,en_GB,GIB
+M,70,3,GIB_5,GIB,3AB,en_GB,en_GB,Andrews,"Flat 46
+Victoria islands
+Leahhaven
+N8F 4WQ",N3B 8TH,GIB,en_GB,GIB
+M,39,8,GRC_0,GRC,2A,el_GR,el_GR,Σακκή,"Παπανάνου 19-68,
+ΤΚ 996 98 Ηγουμενίτσα",37279,GRC,el_GR,GRC
+M,40,3,HRV_0,HRV,1A,hr_HR,af_ZA,Porter,"Palmotićeva 0b/6
+05749 Krk",31137,HRV,af_ZA,UKR
+M,46,1,IMN_0,IMN,1B,en_GB,en_IN,Master,"0 Sharon cape
+North Rosemary
+FY8Y 8RG",KT71 7AH,IMN,en_IN,BMU
+M,54,3,IMN_1,IMN,2A,en_GB,en_GB,Smith,"Studio 63Q
+Williamson run
+East Barryfurt
+S2D 4GA",B96 4LP,IMN,en_GB,IMN
+F,56,1,IMN_2,IMN,1B,en_GB,en_GB,Bailey,"Studio 47
+Bishop corner
+East Melissashire
+NG6 7XX",CT7A 8FJ,IMN,en_GB,IMN
+M,28,2,IMN_3,IMN,2B,en_GB,en_GB,Sharpe,"Flat 52R
+Jenna pines
+Kempview
+B6 8ZG",B42 4WZ,IMN,en_GB,IMN
+M,52,3,IMN_4,IMN,1A,en_GB,en_GB,Kaur,"Flat 38
+Yvonne greens
+Port Jade
+SP20 4LS",EC2 4XH,IMN,en_GB,IMN
+M,59,2,IMN_5,IMN,2B,en_GB,en_GB,Dobson,"Flat 5
+Stephen avenue
+Lake Eileen
+FK5V 8BZ",IV69 2AJ,IMN,en_GB,IMN
+M,30,1,ISL_0,ISL,1B,sv_SE,sv_SE,Söderström,"Stationsstigen 41
+86894 Karlskrona",87998,ISL,sv_SE,ISL
+M,71,2,JEY_0,JEY,2B,en_GB,en_GB,Daly,"3 Richardson squares
+Gregorytown
+TD2 4FU",N13 5PF,JEY,en_GB,JEY
+M,62,1,JEY_1,JEY,1B,en_GB,en_GB,Stephens,"Studio 34
+Sutton plain
+Charlesbury
+B2 1JU",WF8 1PL,JEY,en_GB,GEO
+M,27,2,JEY_2,JEY,1A,en_GB,en_GB,Marsh,"Studio 80i
+Antony inlet
+Murraymouth
+SE6 9WZ",M5F 2PU,JEY,en_GB,JEY
+M,39,2,JEY_3,JEY,2B,en_GB,no_NO,Solheim,"877 Herbert key
+West Sandra
+RH5 8ZQ",DD5V 6DF,JEY,no_NO,PRK
+M,49,1,JEY_4,JEY,1B,en_GB,en_GB,Webb,"053 Antony green
+East Brett
+FY9X 7AB",WD87 9WA,JEY,en_GB,JEY
+M,61,2,JEY_5,JEY,2B,en_GB,af_ZA,Hill,"9 Hayes canyon
+South Derekbury
+LS3 9FG",E0 8YU,JEY,af_ZA,DOM
+M,52,3,KEN_0,KEN,2A,af_ZA,af_ZA,Long,"378 Alexander Lake Apt. 382
+Davidland, TX 76759",90628,KEN,af_ZA,KEN
+M,26,1,KEN_1,KEN,1B,af_ZA,af_ZA,Acosta,"6952 Valdez Cliffs Suite 395
+South Camerontown, NV 60227",83579,KEN,af_ZA,KEN
+M,78,3,KEN_2,KEN,3AB,af_ZA,af_ZA,Parker,"47514 Bridges Flat
+Anthonyhaven, GA 16109",75452,KEN,af_ZA,KEN
+M,25,1,KEN_3,KEN,1B,af_ZA,af_ZA,Hernandez,"1307 Beth Spring Suite 939
+Edwardmouth, NY 06500",81295,KEN,af_ZA,KEN
+M,78,2,KEN_4,KEN,2B,af_ZA,af_ZA,Cox,"USCGC Summers
+FPO AA 37613",24313,KEN,af_ZA,KEN
+F,44,3,KEN_5,KEN,2A,af_ZA,af_ZA,Sanchez,"85086 Berger Estates Apt. 282
+Lake Michaelmouth, OK 37895",46772,KEN,af_ZA,KEN
+M,45,4,LUX_0,LUX,2A,lb_LU,lb_LU,West,"103 Drew Ranch
+Port Sherry, WY 75972",46886,LUX,lb_LU,LUX
+M,43,4,MAR_0,MAR,2A,ar_SA,ar_SA,الجابر,"47167 ميرال Light Suite 872
+أزهارfurt, DC 98378",37680,MAR,ar_SA,MAR
+F,75,1,MAR_1,MAR,1B,ar_SA,ar_SA,آل صفوان,"477 ريما Center Suite 264
+آل صفوانville, GU 17750",47097,MAR,ar_SA,MAR
+M,30,1,MAR_2,MAR,1B,ar_SA,cz_CZ,Blažková,"41596 زغلول Meadow
+South ألين, AK 91051",73500,MAR,cz_CZ,GTM
+M,33,3,MAR_3,MAR,2A,ar_SA,ar_SA,المهيدب,"2620 المهيدب Wells Apt. 814
+New لتينhaven, PR 69280",09728,MAR,ar_SA,MAR
+F,66,1,MAR_4,MAR,1B,ar_SA,ar_SA,آل صفوان,"1768 ثروت Field Apt. 791
+يانعland, DC 48702",60810,MAR,ar_SA,MAR
+M,36,4,MAR_5,MAR,2A,ar_SA,ar_SA,حجار,"0794 ساهد Drive
+آل رفيعfurt, PA 41041",83697,MAR,ar_SA,MAR
+M,45,2,MLI_0,MLI,1A,af_ZA,af_ZA,Hicks,"081 Alexis Forge
+Kimberlyview, CO 90129",19694,MLI,af_ZA,MLI
+M,58,3,MLI_1,MLI,3AB,af_ZA,af_ZA,Pennington,"4735 Garcia Skyway Suite 776
+Hallburgh, NJ 07517",55809,MLI,af_ZA,MLI
+M,37,2,MLI_2,MLI,2B,af_ZA,af_ZA,Snow,"96459 Obrien Turnpike
+Boylehaven, MA 38899",51707,MLI,af_ZA,MLI
+M,64,4,MLI_3,MLI,3AB,af_ZA,af_ZA,Gray,"9241 Bates Forest
+Jefferyborough, UT 00905",56787,MLI,af_ZA,MLI
+M,33,1,MLI_4,MLI,1B,af_ZA,af_ZA,Smith,"9317 Kevin Fields
+Curtismouth, KS 81320",99588,MLI,af_ZA,MLI
+F,33,1,MLI_5,MLI,1B,af_ZA,af_ZA,Alvarez,"6295 Vasquez Key Apt. 154
+Mannville, HI 50519",65162,MLI,af_ZA,MLI
+M,79,2,MLT_0,MLT,2B,,,Johnson,"101 Rick Coves Apt. 330
+Masonburgh, RI 43921",49833,MLT,,MLT
+M,52,2,NAM_0,NAM,3AB,af_ZA,af_ZA,Shaw,"PSC 3043, Box 2655
+APO AA 77553",16642,NAM,af_ZA,NAM
+F,46,1,NAM_1,NAM,1B,af_ZA,af_ZA,Kane,"345 Pamela Ports
+Christinaport, AK 12499",90588,NAM,af_ZA,NAM
+M,68,2,NAM_2,NAM,2B,af_ZA,af_ZA,Bell,"42352 Christopher Run
+South Joseph, AR 69073",46617,NAM,af_ZA,NAM
+M,30,3,NAM_3,NAM,3AB,af_ZA,it_IT,Rocca,"669 Herman Forge
+Stuartmouth, TX 32709",50818,NAM,it_IT,BTN
+M,76,1,NAM_4,NAM,1B,af_ZA,sk_SK,Kubičko,"07049 Miller Road Suite 069
+North Judith, WV 03869",46066,NAM,sk_SK,SWE
+M,41,3,NAM_5,NAM,2A,af_ZA,af_ZA,Garcia,"9987 Silva Locks
+West Mark, HI 51406",38245,NAM,af_ZA,NAM
+M,30,3,NLD_0,NLD,1A,nl_NL,nl_NL,de Grote,"Izelaan 302
+1292IQ
+Drogteropslagen",8530 ZA,NLD,nl_NL,NLD
+M,54,4,ROU_0,ROU,1A,ro_RO,ro_RO,Popescu,"Strada Letiția Tabacu Nr. 940 Bl. 30  Sc. 41 Ap. 482
+Campina, 416174",378593,ROU,ro_RO,ROU
+M,78,4,RUS_0,RUS,3AB,ru_RU,ru_RU,Беляков,"клх Белорецк, бул. Урожайный, д. 844 к. 99, 770783",034637,RUS,ru_RU,RUS
+M,60,2,SLE_0,SLE,2B,af_ZA,af_ZA,Smith,"28636 Burton Park
+Wendymouth, CT 94875",05484,SLE,af_ZA,SLE
+M,66,2,SLE_1,SLE,3AB,af_ZA,af_ZA,Campbell,"USNS Martin
+FPO AP 88711",93628,SLE,af_ZA,SLE
+M,44,3,SLE_2,SLE,3AB,af_ZA,af_ZA,Miranda,"981 Warren Spring Apt. 150
+South Robertfurt, NJ 83736",74278,SLE,af_ZA,SLE
+F,71,1,SLE_3,SLE,1B,af_ZA,af_ZA,Moran,"07385 Brandi Summit
+Brownfort, NM 37745",35876,SLE,af_ZA,SLE
+M,46,2,SLE_4,SLE,3AB,af_ZA,af_ZA,Ponce,"736 Jimenez Oval
+Hermanview, MP 91022",87739,SLE,af_ZA,SLE
+M,64,2,SLE_5,SLE,3AB,af_ZA,af_ZA,Jones,"88064 Sarah Manors
+Karenmouth, IA 28752",48298,SLE,af_ZA,SLE
+M,25,4,SVN_0,SVN,2A,sl_SI,sl_SI,Perko,"Mlinska pot 1c
+1058 Rogaška Slatina",4547,SVN,sl_SI,SVN
+M,70,2,TZA_0,TZA,2B,af_ZA,af_ZA,Cannon,"3984 Jamie Mews Apt. 672
+Stacyburgh, AL 67452",08004,TZA,af_ZA,TZA
+M,57,2,TZA_1,TZA,2B,af_ZA,ar_AE,Barron,"127 Hamilton Via
+North Laurahaven, MO 09849",93009,TZA,ar_AE,KHM
+M,25,4,TZA_2,TZA,2A,af_ZA,af_ZA,Phillips,"9890 Johnson Vista
+Kyleport, MN 88423",09619,TZA,af_ZA,TZA
+M,32,1,TZA_3,TZA,1B,af_ZA,af_ZA,Williams,"USNV Valencia
+FPO AP 57646",06406,TZA,af_ZA,TZA
+M,49,4,TZA_4,TZA,3AB,af_ZA,af_ZA,Craig,"791 Summers Mountain Apt. 319
+Port Heather, DE 48812",43736,TZA,af_ZA,TZA
+M,44,1,TZA_5,TZA,1B,af_ZA,af_ZA,Nichols,"793 Young Flats
+Port Dawnland, HI 18905",48416,TZA,af_ZA,TZA
+M,56,1,UKR_0,UKR,1B,uk_UA,uk_UA,Ткач,"узвіз Житомирська, буд. 363, Кам'янське, 55772",29633,UKR,uk_UA,UKR
