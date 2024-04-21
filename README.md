@@ -31,22 +31,8 @@ The project is divided into four main scripts, each responsible for a specific p
   - **Flight Selection:** Selects the most suitable flights for each passenger based on their preferences, such as price, airline, departure time, etc.
   - **Booking Management:** Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
 
-### 3. Build XML
-- **Main File:** BuildXML.py.py
-/**
- * @file FlightBooking.py
- * @brief Handles the flight booking process in the travel booking simulation.
- *
- * The FlightBooking.py module is responsible for generating flight options, selecting flights based on passenger preferences, and managing the booking of flights for the simulated passengers.
- *
- * @section Related_Files Related Files
- * - src/BUILD_xml.py
- *
- * @section Key_Features Key Features
- * - Flight Options Generation: Generates a list of available flight options based on the given origin, destination, and travel dates.
- * - Flight Selection: Selects the most suitable flights for each passenger based on their preferences, such as price, airline, departure time, etc.
- * - Booking Management: Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
- */
+### 4. Build XML
+- **Main File:** BuildXML.py
 - **Related Files:** src/BUILD_xml.py
 - **Purpose:** The purpose of FlightBooking.py is to handle the flight booking process in the travel booking simulation. It is responsible for generating flight options, selecting flights based on passenger preferences, and managing the booking of flights for the simulated passengers.
 - **Key Features:**
@@ -55,24 +41,20 @@ The project is divided into four main scripts, each responsible for a specific p
   - **Booking Management:** Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
 
 
+  ## Execution Order
+  To run the Synthetic PNR Data Project, follow the below execution order:
+
+  1. Run the `GeneratePopulation.py` script. This script generates a synthetic population database with detailed demographic and geographic information.
+
+  2. After generating the population database, run the `GroupingBooking.py` script. This script simulates passenger behavior and generates booking groups based on the generated population database.
+
+  3. Once the booking groups are generated, execute the `FlightBooking.py` script. This script handles the flight booking process by generating flight options, selecting suitable flights for each passenger, and managing the booking of flights.
+
+  4. Finally, run the `BuildXML.py` script. This script is responsible for building XML files based on the generated synthetic PNR data and flight bookings.
+
+  Make sure to execute the scripts in the specified order to ensure the proper functioning of the Synthetic PNR Data Project.
 
 
-Execution Order
-To simulate the entire process of planning and booking travel accurately, execute the scripts in the following order:
-
-Synthetic PNR Data Generation
-Routing Code
-Booking Groups Generation
-Flight Selection
-Dependencies
-Python 3.8+
-pandas
-numpy
-scipy
-joblib
-(any other libraries or frameworks used in the scripts)
-Setup and Usage
-Ensure Python and all required dependencies are installed. Execute the scripts in the prescribed order, adjusting paths to datasets as necessary. Each script reads input data and generates output datasets that serve as input for the subsequent script in the simulation pipeline.
 
 Contributing
 Contributions to the project are welcome. Please ensure to follow best practices for code contributions, including using clear and descriptive commit messages and creating pull requests for review.
