@@ -1,0 +1,15 @@
+# Ignore data/XML_Test folder
+data/XML_Test/
+data/populationData
+
+# Ignore large files
+data/flightData/EU_flight_new.csv
+data/synthesizedData/flights_complete.csv
+
+# Ignore Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+.DS_Store
+
+# Ignore Notebooks and old files
+Build_XML_V2.0.ipynb
