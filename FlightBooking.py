@@ -15,7 +15,15 @@ class FlightBookingSystem:
         """Load data from csv files."""
         self.df_flight = pd.read_csv(os.path.join(self.data_dir, 'flightData/EU_flight_new.csv'))
         self.df_book = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/group.csv'))
+        self.df_book_soi = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/group_soi.csv'))
         self.route = pd.read_csv(os.path.join(self.data_dir, 'flightData/route_all.csv'))
+
+
+        #check if SOI file exists
+        if os.path.exists(os.path.join(self.data_dir, 'synthesizedData/group_soi.csv')):
+            self.df_book = pd.concat([self.df_book, self.df_book_soi], ignore_index=True)
+            print("SOI file exists")
+
         self.clean_data()
 
     def clean_data(self):

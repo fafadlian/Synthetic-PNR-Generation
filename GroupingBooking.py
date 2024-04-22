@@ -43,7 +43,7 @@ class GroupBooking:
         return df_hubs
     
     def run_analysis(self):
-        df_city, df_HH = bktrip.original_city_assign_init(self.df_HH, self.df_flight, self.df_hubs)
+        df_city, df_HH = bktrip.original_city_asstrign_init(self.df_HH, self.df_flight, self.df_hubs)
         df_behaviour, df_behaviour_complete = bkbeh.behaviour(self.df_HH, self.df_flight, self.personas, self.weight, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight, 3, self.crosswalk)
         df_group = bkgroup.grouping_init(df_behaviour_complete, self.agencies, self.agency_weight, self.route, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight)
         df_behaviour_complete.to_csv(os.path.join(self.data_dir, 'synthesizedData/behaviour_complete.csv'), index=False)

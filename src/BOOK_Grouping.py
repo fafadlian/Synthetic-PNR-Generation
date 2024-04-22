@@ -117,18 +117,42 @@ def grouping_init(df_behaviour_complete, agencies, agency_weight, route, bus_sta
     leisure['group_value'] = leisure['IATA_O'] + "-" + leisure['Behaviour_1'].apply(extract_group_value)
     s = leisure.groupby('group_value').cumcount().add(0).astype(str)
     leisure['group_value'] += ('-ID' + s)
+    unique_ids = leisure['HHID'].unique()
+    list_of_passengers = Parallel(n_jobs=1)(delayed(process_leisure_group)(leisure, unique_id) for unique_id in range(len(unique_ids)))
+    df_lei = pd.DataFrame(list(zip(leisure['group_value'], list_of_passengers)), columns=['init_id', 'list_of_passengers'])
     print('done leisure')
 
-    unique_ids = leisure['HHID'].unique()
-    # print('done uniqueid')
-    list_of_passengers = Parallel(n_jobs=1)(delayed(process_leisure_group)(leisure, unique_id) for unique_id in range(len(unique_ids)))
-    # print('done LOP')
-    df_lei = pd.DataFrame(list(zip(leisure['group_value'], list_of_passengers)), columns=['init_id', 'list_of_passengers'])
+    target_value = ['SOI']
+    SOI = df_behaviour_complete[df_behaviour_complete['Behaviour_1'].apply(lambda x: any(val in x for val in target_value))].reset_index()
+    SOI['group_value'] = SOI['IATA_O'] + "-" + SOI['Behaviour_1'].apply(extract_group_value)
+    so = SOI.groupby('group_value').cumcount().add(0).astype(str)
+    SOI['group_value'] += ('-ID' + so)
+    unique_ids_SOI = SOI['HHID'].unique()
+    list_of_passengers_SOI = Parallel(n_jobs=1)(delayed(process_leisure_group)(SOI, unique_id) for unique_id in range(len(unique_ids_SOI)))
+    df_SOI = pd.DataFrame(list(zip(SOI['group_value'], list_of_passengers_SOI)), columns=['init_id', 'list_of_passengers'])
+    print('done SOI')
+
+                                                
+
+
+    
     
 
     # Combine and Merge Data
-    df_combined = pd.concat([df_bus, df_lei], ignore_index=True)
-    print(df_combined['init_id'].head())
+    dataframes = []
+    if 'df_bus' in locals() and df_bus is not None and not df_bus.empty:
+        dataframes.append(df_bus)
+    if 'df_lei' in locals() and df_lei is not None and not df_lei.empty:
+        dataframes.append(df_lei)
+    if 'df_SOI' in locals() and df_SOI is not None and not df_SOI.empty:
+        dataframes.append(df_SOI)
+
+    if dataframes:
+        df_combined = pd.concat(dataframes, ignore_index=True)
+    else:
+        df_combined = pd.DataFrame()
+
+    # print(df_combined['init_id'].head())
     df_combined['route'] = df_combined['init_id'].apply(extract_od)
     df_combined['num_in_party'] = df_combined['list_of_passengers'].str.len()
     df_combined = assign_agencies(df_combined, agencies, agency_weight)
@@ -141,7 +165,7 @@ def grouping_init(df_behaviour_complete, agencies, agency_weight, route, bus_sta
                             ['Total_Inverse'] + [f'Prob_fix_Route_{i}' for i in range(1, 4)],
                     inplace=True)
     df_combined['Leg_fixRoute'] = df_combined['fixRoute'].str.count('->')
-    print(df_combined.columns)
+    # print(df_combined.columns)
     df_combined = stay_day_rt(df_combined, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight)
 
  

@@ -38,11 +38,14 @@ def conditions(purpose, Nparty, HHType):
                 return 'family', Nparty
     elif purpose == 'group':
 #         z = choices([3,4,5,6,7], [0.518733, 0.209850, 0.211782, 0.029883, 0.029752])
-        return 'group', 0    
+        return 'group', 0
+    elif purpose == 'SOI':
+        return 'SOI', Nparty
     
 def process_behaviour(df, i):
     colName = 'Behaviour_' + str(i + 1)
     func = np.vectorize(conditions)
+    # print("df_sizeHH:", df['SizeHH'])
     trType = func([el[1] for el in df[colName]], list(df['SizeHH']), list(df['HHType']))
     travelType = list(trType[0])
     NP = list(trType[1])
@@ -64,7 +67,7 @@ def update_travel_type(df, behaviour_num):
 
 def behaviour(df_HH, df_flight, personas, weight, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight, behaviour_num, crosswalk):
     """Main function to integrate and manage traveller behaviour analysis."""
-    print(f'df_HH.shape: {df_HH.shape}')
+    # print(f'df_HH.shape: {df_HH.shape}')
     df_flight_EU = df_flight[df_flight['region_D'] == 'Europe']
     EU_ISO = crosswalk[crosswalk['region'] == 'Europe']['HH_ISO'].unique()
 
@@ -75,7 +78,7 @@ def behaviour(df_HH, df_flight, personas, weight, bus_stay_day, bus_stay_weight,
         traveller_type = persona_selection(df_HH, personas, weight)
         behaviour_list = [list(x) for x in zip(destination, traveller_type)]
         df_behaviour['Behaviour_'+str(i+1)] = pd.Series(behaviour_list)
-        print('df_behaviour_shape: ', df_behaviour.shape)
+        # print('df_behaviour_shape: ', df_behaviour.shape)
         
     if 'HHID' not in df_behaviour.columns:
         df_behaviour.insert(0, 'HHID', df_HH['HHID'].tolist())
