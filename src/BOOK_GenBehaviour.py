@@ -65,7 +65,7 @@ def update_travel_type(df, behaviour_num):
         df[col_name] = updated_col
     return df
 
-def behaviour(df_HH, df_flight, personas, weight, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight, behaviour_num, crosswalk):
+def generate_behaviour(df_HH, df_flight, personas, weight, behaviour_num, crosswalk):
     """Main function to integrate and manage traveller behaviour analysis."""
     # print(f'df_HH.shape: {df_HH.shape}')
     df_flight_EU = df_flight[df_flight['region_D'] == 'Europe']

@@ -5,9 +5,9 @@ from joblib import Parallel, delayed
 import warnings
 
 
-def process_leisure_group(leisure, unique_id):
+def basic_grouping(leisure, unique_id, select_behaviour):
     """Generate a list of passenger identifiers for leisure groups."""
-    behaviour_count = leisure.loc[unique_id, 'Behaviour_1'][3]
+    behaviour_count = leisure.loc[unique_id, select_behaviour][3]
     return [f"{leisure.loc[unique_id, 'HHID']}_{j + 1}" for j in range(behaviour_count)]
 
 def bus_group_assign(business_group):
@@ -103,32 +103,36 @@ def fill_na_and_calculate_inverse_probabilities(df):
         df[f'Prob_fix_Route_{i}'] = df[f'Inv_Leg_fixRoute_{i}'] / df['Total_Inverse']
     return df
 
-def grouping_init(df_behaviour_complete, agencies, agency_weight, route, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight):
+def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weight, route, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight):
     # Business and Group Part
     target_value = ['business', 'group']
-    businessgroup = df_behaviour_complete[df_behaviour_complete['Behaviour_1'].apply(lambda x: any(val in x for val in target_value))]
-    businessgroup['group_value'] = businessgroup['IATA_O'] + "-" + businessgroup['Behaviour_1'].apply(extract_group_value)
+    businessgroup = df_behaviour_complete[df_behaviour_complete[select_behaviour].apply(lambda x: any(val in x for val in target_value))]
+    businessgroup['group_value'] = businessgroup['IATA_O'] + "-" + businessgroup[select_behaviour].apply(extract_group_value)
+
     df_bus = bus_group_assign(businessgroup) 
     print('done business group')
     
     # Leisure Part    
     target_value = ['leisure']
-    leisure = df_behaviour_complete[df_behaviour_complete['Behaviour_1'].apply(lambda x: any(val in x for val in target_value))].reset_index()
-    leisure['group_value'] = leisure['IATA_O'] + "-" + leisure['Behaviour_1'].apply(extract_group_value)
+    leisure = df_behaviour_complete[df_behaviour_complete[select_behaviour].apply(lambda x: any(val in x for val in target_value))].reset_index()
+    leisure['group_value'] = leisure['IATA_O'] + "-" + leisure[select_behaviour].apply(extract_group_value)
     s = leisure.groupby('group_value').cumcount().add(0).astype(str)
     leisure['group_value'] += ('-ID' + s)
     unique_ids = leisure['HHID'].unique()
-    list_of_passengers = Parallel(n_jobs=1)(delayed(process_leisure_group)(leisure, unique_id) for unique_id in range(len(unique_ids)))
-    df_lei = pd.DataFrame(list(zip(leisure['group_value'], list_of_passengers)), columns=['init_id', 'list_of_passengers'])
+    #grouping based on the person in household
+    list_of_passengers = Parallel(n_jobs=1)(delayed(basic_grouping)(leisure, unique_id, select_behaviour) for unique_id in range(len(unique_ids)))
+    df_leisure = pd.DataFrame(list(zip(leisure['group_value'], list_of_passengers)), columns=['init_id', 'list_of_passengers'])
     print('done leisure')
 
+    # SOI Part
     target_value = ['SOI']
-    SOI = df_behaviour_complete[df_behaviour_complete['Behaviour_1'].apply(lambda x: any(val in x for val in target_value))].reset_index()
-    SOI['group_value'] = SOI['IATA_O'] + "-" + SOI['Behaviour_1'].apply(extract_group_value)
+    SOI = df_behaviour_complete[df_behaviour_complete[select_behaviour].apply(lambda x: any(val in x for val in target_value))].reset_index()
+    SOI['group_value'] = SOI['IATA_O'] + "-" + SOI[select_behaviour].apply(extract_group_value)
     so = SOI.groupby('group_value').cumcount().add(0).astype(str)
     SOI['group_value'] += ('-ID' + so)
     unique_ids_SOI = SOI['HHID'].unique()
-    list_of_passengers_SOI = Parallel(n_jobs=1)(delayed(process_leisure_group)(SOI, unique_id) for unique_id in range(len(unique_ids_SOI)))
+    #use the same process as leisure group (grouping based on the person in household)
+    list_of_passengers_SOI = Parallel(n_jobs=1)(delayed(basic_grouping)(SOI, unique_id) for unique_id in range(len(unique_ids_SOI)))
     df_SOI = pd.DataFrame(list(zip(SOI['group_value'], list_of_passengers_SOI)), columns=['init_id', 'list_of_passengers'])
     print('done SOI')
 
@@ -142,8 +146,8 @@ def grouping_init(df_behaviour_complete, agencies, agency_weight, route, bus_sta
     dataframes = []
     if 'df_bus' in locals() and df_bus is not None and not df_bus.empty:
         dataframes.append(df_bus)
-    if 'df_lei' in locals() and df_lei is not None and not df_lei.empty:
-        dataframes.append(df_lei)
+    if 'df_leisure' in locals() and df_leisure is not None and not df_leisure.empty:
+        dataframes.append(df_leisure)
     if 'df_SOI' in locals() and df_SOI is not None and not df_SOI.empty:
         dataframes.append(df_SOI)
 

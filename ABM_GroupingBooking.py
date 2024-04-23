@@ -6,8 +6,8 @@ from itertools import product
 from joblib import Parallel, delayed
 import os
 
-from src import BOOK_Behaviour as bkbeh
 from src import BOOK_Trip as bktrip
+from src import BOOK_GenBehaviour as bkbeh
 from src import BOOK_Grouping as bkgroup
 
 
@@ -43,9 +43,10 @@ class GroupBooking:
         return df_hubs
     
     def run_analysis(self):
-        df_city, df_HH = bktrip.original_city_asstrign_init(self.df_HH, self.df_flight, self.df_hubs)
-        df_behaviour, df_behaviour_complete = bkbeh.behaviour(self.df_HH, self.df_flight, self.personas, self.weight, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight, 3, self.crosswalk)
-        df_group = bkgroup.grouping_init(df_behaviour_complete, self.agencies, self.agency_weight, self.route, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight)
+        df_city, self.df_HH = bktrip.original_city_assign_init(self.df_HH, self.df_flight, self.df_hubs)
+        df_behaviour_complete = bkbeh.generate_behaviour(self.df_HH, self.df_flight, self.personas, self.weight, 3, self.crosswalk)
+        select_behaviour = 'Behaviour_1'
+        df_group = bkgroup.grouping_init(df_behaviour_complete, select_behaviour, self.agencies, self.agency_weight, self.route, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight)
         df_behaviour_complete.to_csv(os.path.join(self.data_dir, 'synthesizedData/behaviour_complete.csv'), index=False)
         df_group.to_csv(os.path.join(self.data_dir, 'synthesizedData/group.csv'), index=False)
 
