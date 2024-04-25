@@ -9,9 +9,9 @@ def select_traveller_type(hhid, personas, weight):
     types = choices(personas, weight)[0]
     return hhid, types
 
-def persona_selection(df_HH, personas, weights):
+def persona_selection(df_HH, personas, weights, num_cores):
     """Assigns a persona to each household based on provided weights."""
-    results = Parallel(n_jobs=-1)(
+    results = Parallel(n_jobs=num_cores)(
         delayed(select_traveller_type)(hhid, personas, weights) for hhid in df_HH['HHID']
     )
     _, traveller_types = zip(*results)
@@ -56,16 +56,16 @@ def process_behaviour(df, i):
 
     return colName, updated_col
 
-def update_travel_type(df, behaviour_num):
+def update_travel_type(df, behaviour_num, num_cores):
     """Parallel computation for updating travel types for behaviours."""
-    results = Parallel(n_jobs=-1)(
+    results = Parallel(n_jobs=num_cores)(
         delayed(process_behaviour)(df, i) for i in range(behaviour_num)
     )
     for col_name, updated_col in results:
         df[col_name] = updated_col
     return df
 
-def generate_behaviour(df_HH, df_flight, personas, weight, behaviour_num, crosswalk):
+def generate_behaviour(df_HH, df_flight, personas, weight, behaviour_num, crosswalk, num_cores):
     """Main function to integrate and manage traveller behaviour analysis."""
     # print(f'df_HH.shape: {df_HH.shape}')
     df_flight_EU = df_flight[df_flight['region_D'] == 'Europe']
@@ -74,8 +74,10 @@ def generate_behaviour(df_HH, df_flight, personas, weight, behaviour_num, crossw
     df_behaviour = pd.DataFrame({'HHID': df_HH['HHID']})
 
     for i in range(behaviour_num):
-        destination = bktrip.destination_assign_init(df_HH, df_flight_EU, df_flight, EU_ISO)
-        traveller_type = persona_selection(df_HH, personas, weight)
+        destination = bktrip.destination_assign_init(df_HH, df_flight_EU, df_flight, EU_ISO, num_cores)
+        print("Destination Assigned")
+        traveller_type = persona_selection(df_HH, personas, weight, num_cores)
+        print("Traveller Type Assigned")
         behaviour_list = [list(x) for x in zip(destination, traveller_type)]
         df_behaviour['Behaviour_'+str(i+1)] = pd.Series(behaviour_list)
         # print('df_behaviour_shape: ', df_behaviour.shape)
@@ -87,9 +89,12 @@ def generate_behaviour(df_HH, df_flight, personas, weight, behaviour_num, crossw
     del df_behaviour_col[0]
     column_name = list(list(df_HH.columns)+df_behaviour_col)
     df_behaviour_complete = df_HH.merge(df_behaviour, on = 'HHID', how = 'left')
-    df_behaviour_complete = update_travel_type(df_behaviour_complete, behaviour_num)
+    df_behaviour_complete = update_travel_type(df_behaviour_complete, behaviour_num, num_cores)
+    print("Behaviour Complete")
+    df_behaviour_complete = pd.DataFrame(df_behaviour_complete, columns=column_name)
+
     
-    return df_behaviour, df_behaviour_complete
+    return df_behaviour_complete
 
 # def behaviour(df_HH, df_flight, personas, weights, behaviour_num, crosswalk):
 #     """Main function to integrate and manage traveller behaviour analysis."""

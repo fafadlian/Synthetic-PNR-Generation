@@ -19,7 +19,7 @@ class FlightBookingSystem:
         self.route = pd.read_csv(os.path.join(self.data_dir, 'flightData/route_all.csv'))
 
 
-        #check if SOI file exists
+        # check if SOI file exists
         if os.path.exists(os.path.join(self.data_dir, 'synthesizedData/group_soi.csv')):
             self.df_book = pd.concat([self.df_book, self.df_book_soi], ignore_index=True)
             print("SOI file exists")
@@ -66,12 +66,13 @@ class FlightBookingSystem:
     
     def run_analysis(self):
         """Run analysis for all groups."""
+        print("Flight Selection Started")
         self.outbound_day()
         self.df_book, self.df_flight = fb.outbound_itinerary(self.df_book, self.df_flight)
         self.df_book, self.df_flight = fb.return_itinerary(self.df_book, self.df_flight)
         self.df_book.to_csv(os.path.join(self.data_dir, 'synthesizedData/bookings_complete.csv'), index=False)
         self.df_flight.to_csv(os.path.join(self.data_dir, 'synthesizedData/flights_complete.csv'), index=False)
-        print("Analysis complete")
+        print("Flight Selection complete")
 
-flight_booking = FlightBookingSystem(data_dir='data')
-flight_booking.run_analysis()
+# flight_booking = FlightBookingSystem(data_dir='data')
+# flight_booking.run_analysis()

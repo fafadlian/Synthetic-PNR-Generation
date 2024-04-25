@@ -21,8 +21,13 @@ import xml.etree.ElementTree as ET
 from src import BUILD_xml as bxml
 
 class BuildXML:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, xml_dir, num_cores):
         self.data_dir = data_dir
+        self.xml_dir = xml_dir
+        self.num_cores = num_cores
+        self.complete_dir = os.path.join(self.data_dir, self.xml_dir)
+        if not os.path.exists(self.complete_dir):
+            os.makedirs(self.complete_dir)
         self.load_data()
         print("Build XML Initialized")
 
@@ -30,9 +35,22 @@ class BuildXML:
         """Load data from csv files."""
         self.df_HH = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/HH_data.csv'))
         self.df_P = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/person_data.csv'))
+        print("initial P:", self.df_P.shape)
+
+
+
+
         self.df_flight = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/flights_complete.csv'))
         self.df_book = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/bookings_complete.csv'))
         self.crosswalk = pd.read_csv(os.path.join(self.data_dir, 'geoCrosswalk/GeoCrossWalkMed.csv'))
+
+        if os.path.exists(os.path.join(self.data_dir, 'synthesizedData/person_SOI.csv')):
+            self.df_person_SOI = pd.read_csv(os.path.join(self.data_dir, 'synthesizedData/person_SOI.csv'))
+            self.df_P = pd.concat([self.df_P, self.df_person_SOI], ignore_index=True)
+            print("Person SOI file exists")
+        print("P_SOI:", self.df_person_SOI.shape)
+        print("Final P:", self.df_P.shape)
+        print
         print("Data Loaded")
 
     def data_cleaning(self):
@@ -104,31 +122,37 @@ class BuildXML:
         Returns:
         dict: A dictionary with keys from the specified index column and values as row data.
         """
-        df.fillna('NaN', inplace = True)
+        for column in df.columns:
+            if df[column].dtype == float:
+                # For float columns, fill with a numeric value or convert to string
+                df[column].fillna(0, inplace=True)
+            elif df[column].dtype == object:
+                # For object (typically string) columns, replace NaN with a string 'NaN' or any placeholder
+                df[column].fillna('NaN', inplace=True)
         return df.set_index(index_col).T.to_dict()
     
-    def build_pnr(self, n_flight=10):
+    def build_pnr(self):
         """Build PNR XML."""
         self.data_cleaning()
         self.print_flight_stats()
-        self.df_HH_Nat = self.df_HH[['HHID','NationalityNat']]
-        self.df_P = pd.merge(self.df_P, self.df_HH_Nat, on='HHID', how = 'left')   
+        # self.df_HH_Nat = self.df_HH[['HHID','NationalityNat']]
+        # self.df_P = pd.merge(self.df_P, self.df_HH_Nat, on='HHID', how = 'left')   
 
         flight_data = self.preprocess_data(self.df_flight, 'flight_id')
         book_data = self.preprocess_data(self.df_book, 'init_id')
         p_data = self.preprocess_data(self.df_P, 'P_ID')
         flight_ids = self.df_flight['flight_id'].tolist()
-        # Parallel(n_jobs=6)(delayed(bxml.PNRGeneration)(i, flight_data, book_data, p_data) for i in flight_ids)
+        # Parallel(n_jobs=self.num_cores)(delayed(bxml.PNRGeneration)(i, flight_data, book_data, p_data, self.complete_dir) for i in flight_ids)
         self.error_flight_ids = []
         self.built_flight_ids = []
         self.start_time = time.time()
         for i in flight_ids:
             try:
                 # print(i)
-                bxml.PNRGeneration(i, flight_data, book_data, p_data)
+                bxml.PNRGeneration(i, flight_data, book_data, p_data, self.complete_dir)
                 self.built_flight_ids.append(i)
             except Exception as e:
-                # print(f"Error processing flight_id {i}: {e}")
+                print(f"Error processing flight_id {i}: {e}")
                 self.error_flight_ids.append(i)
                 # Optionally, log more information or handle the exception in other ways
 
@@ -143,6 +167,7 @@ class BuildXML:
         
         print("PNR XML Built")
 
-build_xml = BuildXML('data')
-build_xml.build_pnr()
+# #Example Usage
+# build_xml = BuildXML('data')
+# build_xml.build_pnr()
     

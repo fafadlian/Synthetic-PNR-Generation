@@ -1,17 +1,18 @@
+import xml.etree.ElementTree as ET
+
+
+import time
 import json
 import pandas as pd
 import numpy as np 
-import xml.etree.ElementTree as ET
 import random
 from random import choices
 from xml.dom import minidom
-
+import os
 from os import listdir
 from os.path import isfile, join
 
-import time
-
-def PNRGeneration(i, flight_data, book_data, p_data):
+def PNRGeneration(i, flight_data, book_data, p_data, complete_dir):
     root = ET.Element("IATA_PNRGOV_NotifRQ")      
     flight_info = flight_data[i]
 
@@ -38,7 +39,7 @@ def PNRGeneration(i, flight_data, book_data, p_data):
     root.append(a3)
 
     for j in flight_info['bookings'].split(","):
-        print("flight: ", i, " booking :", j)
+        # print("flight: ", i, " booking :", j)
         if j in book_data:
             booking_info = book_data[j]
             a3_1 = ET.SubElement(a3, 'PNR', NumberOfPassengers = str(booking_info['num_in_party']), 
@@ -171,7 +172,7 @@ def PNRGeneration(i, flight_data, book_data, p_data):
                 fly = fly+1
 
     tree = ET.ElementTree(root)    
-    filename = 'data/XML_Test/'+str(i)+".xml"        
+    filename = os.path.join(complete_dir, f'{i}.xml')
       
     with open (filename, "wb") as file :
         file.write(ET.tostring(root,encoding='UTF-8'))

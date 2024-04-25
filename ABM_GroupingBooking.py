@@ -12,8 +12,9 @@ from src import BOOK_Grouping as bkgroup
 
 
 class GroupBooking:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, num_cores):
         self.data_dir = data_dir
+        self.num_cores = num_cores
         self.load_data()
         print("Group and Booking Initialized")
 
@@ -43,14 +44,19 @@ class GroupBooking:
         return df_hubs
     
     def run_analysis(self):
-        df_city, self.df_HH = bktrip.original_city_assign_init(self.df_HH, self.df_flight, self.df_hubs)
-        df_behaviour_complete = bkbeh.generate_behaviour(self.df_HH, self.df_flight, self.personas, self.weight, 3, self.crosswalk)
+        print("Running Grouping and Booking")
+        df_city, self.df_HH = bktrip.original_city_assign_init(self.df_HH, self.df_flight, self.df_hubs, self.num_cores)
+        print("Original City Assigned")
+        df_behaviour_complete = bkbeh.generate_behaviour(self.df_HH, self.df_flight, self.personas, self.weight, 3, self.crosswalk, self.num_cores)
+        print("Behaviour Generated")
         select_behaviour = 'Behaviour_1'
-        df_group = bkgroup.grouping_init(df_behaviour_complete, select_behaviour, self.agencies, self.agency_weight, self.route, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight)
+        df_group = bkgroup.grouping_init(df_behaviour_complete, select_behaviour, self.agencies, self.agency_weight, self.route, self.bus_stay_day, self.bus_stay_weight, self.vac_stay_day, self.vac_stay_weight, self.num_cores)
+        print("Grouping Completed")
         df_behaviour_complete.to_csv(os.path.join(self.data_dir, 'synthesizedData/behaviour_complete.csv'), index=False)
         df_group.to_csv(os.path.join(self.data_dir, 'synthesizedData/group.csv'), index=False)
+        print("Grouping and Booking Completed")
 
-
-grouping_booking = GroupBooking(data_dir='data')
-grouping_booking.run_analysis()
+# Usage Example
+# grouping_booking = GroupBooking(data_dir='data', num_cores=-1)
+# grouping_booking.run_analysis()
     

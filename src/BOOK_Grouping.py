@@ -3,12 +3,20 @@ import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
 import warnings
+import ast
+
 
 
 def basic_grouping(leisure, unique_id, select_behaviour):
-    """Generate a list of passenger identifiers for leisure groups."""
-    behaviour_count = leisure.loc[unique_id, select_behaviour][3]
-    return [f"{leisure.loc[unique_id, 'HHID']}_{j + 1}" for j in range(behaviour_count)]
+    # Set 'HHID' as the index if not already set
+    if leisure.index.name != 'HHID':
+        leisure = leisure.set_index('HHID')
+    
+    # Accessing the data
+    behaviour_data = leisure.loc[unique_id, select_behaviour][3]
+
+    return [f"{unique_id}_{j + 1}" for j in range(behaviour_data)]
+
 
 def bus_group_assign(business_group):
     """Assign business groups based on predefined probability distributions."""
@@ -103,36 +111,41 @@ def fill_na_and_calculate_inverse_probabilities(df):
         df[f'Prob_fix_Route_{i}'] = df[f'Inv_Leg_fixRoute_{i}'] / df['Total_Inverse']
     return df
 
-def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weight, route, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight):
+def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weight, route, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight, num_cores):
+    """Main function to integrate and manage traveller grouping analysis."""
+    df_behaviour_complete[select_behaviour] = df_behaviour_complete[select_behaviour].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
+
     # Business and Group Part
     target_value = ['business', 'group']
+    df_behaviour_complete[select_behaviour] = df_behaviour_complete[select_behaviour].astype(str)
     businessgroup = df_behaviour_complete[df_behaviour_complete[select_behaviour].apply(lambda x: any(val in x for val in target_value))]
     businessgroup['group_value'] = businessgroup['IATA_O'] + "-" + businessgroup[select_behaviour].apply(extract_group_value)
-
     df_bus = bus_group_assign(businessgroup) 
     print('done business group')
     
     # Leisure Part    
     target_value = ['leisure']
     leisure = df_behaviour_complete[df_behaviour_complete[select_behaviour].apply(lambda x: any(val in x for val in target_value))].reset_index()
+    leisure[select_behaviour] = leisure[select_behaviour].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
     leisure['group_value'] = leisure['IATA_O'] + "-" + leisure[select_behaviour].apply(extract_group_value)
     s = leisure.groupby('group_value').cumcount().add(0).astype(str)
     leisure['group_value'] += ('-ID' + s)
     unique_ids = leisure['HHID'].unique()
     #grouping based on the person in household
-    list_of_passengers = Parallel(n_jobs=1)(delayed(basic_grouping)(leisure, unique_id, select_behaviour) for unique_id in range(len(unique_ids)))
+    list_of_passengers = Parallel(n_jobs=num_cores)(delayed(basic_grouping)(leisure, unique_id, select_behaviour) for unique_id in unique_ids)
     df_leisure = pd.DataFrame(list(zip(leisure['group_value'], list_of_passengers)), columns=['init_id', 'list_of_passengers'])
     print('done leisure')
 
     # SOI Part
     target_value = ['SOI']
     SOI = df_behaviour_complete[df_behaviour_complete[select_behaviour].apply(lambda x: any(val in x for val in target_value))].reset_index()
+    SOI[select_behaviour] = SOI[select_behaviour].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
     SOI['group_value'] = SOI['IATA_O'] + "-" + SOI[select_behaviour].apply(extract_group_value)
     so = SOI.groupby('group_value').cumcount().add(0).astype(str)
     SOI['group_value'] += ('-ID' + so)
     unique_ids_SOI = SOI['HHID'].unique()
     #use the same process as leisure group (grouping based on the person in household)
-    list_of_passengers_SOI = Parallel(n_jobs=1)(delayed(basic_grouping)(SOI, unique_id) for unique_id in range(len(unique_ids_SOI)))
+    list_of_passengers_SOI = Parallel(n_jobs=num_cores)(delayed(basic_grouping)(SOI, unique_id, select_behaviour) for unique_id in unique_ids_SOI)
     df_SOI = pd.DataFrame(list(zip(SOI['group_value'], list_of_passengers_SOI)), columns=['init_id', 'list_of_passengers'])
     print('done SOI')
 
@@ -156,12 +169,15 @@ def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weig
     else:
         df_combined = pd.DataFrame()
 
-    # print(df_combined['init_id'].head())
     df_combined['route'] = df_combined['init_id'].apply(extract_od)
     df_combined['num_in_party'] = df_combined['list_of_passengers'].str.len()
     df_combined = assign_agencies(df_combined, agencies, agency_weight)
+    print("2:", df_combined.shape)
     df_combined = assign_booking_days(df_combined, 30)
+    print("3:", df_combined.shape)
+    print("route", df_combined['route'].head())
     df_combined = merge_and_process_route(df_combined, route)
+    print("4:", df_combined.shape)
     df_combined.rename(columns={'Chosen_Route': 'fixRoute'}, inplace=True)
     df_combined.drop(columns=[f'fixRoute_{i}' for i in range(1, 4)] +
                             [f'Leg_fixRoute_{i}' for i in range(1, 4)] +
@@ -169,6 +185,7 @@ def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weig
                             ['Total_Inverse'] + [f'Prob_fix_Route_{i}' for i in range(1, 4)],
                     inplace=True)
     df_combined['Leg_fixRoute'] = df_combined['fixRoute'].str.count('->')
+    print("5:", df_combined.shape)
     # print(df_combined.columns)
     df_combined = stay_day_rt(df_combined, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight)
 

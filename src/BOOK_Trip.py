@@ -49,7 +49,7 @@ def choose_route(row):
         return None
     return np.random.choice(valid_routes, p=valid_probabilities)
 
-def original_city_assign_init(df_HH, df_flight, df_hubs):
+def original_city_assign_init(df_HH, df_flight, df_hubs, num_core):
     # Precompute the groupby
     grouped_org = df_flight.groupby(['HH_ISO_O', 'IATA_O'])['capacity'].sum().reset_index()
 
@@ -59,14 +59,14 @@ def original_city_assign_init(df_HH, df_flight, df_hubs):
 
     # Parallel computation for city lookup
     unique_iso_travel = df_HH['ISO_Travel'].unique()
-    city_lookup_list = Parallel(n_jobs=1)(
+    city_lookup_list = Parallel(n_jobs=num_core)(
         delayed(assign_city)(HH_ISO, grouped_org) for HH_ISO in unique_iso_travel
     )
     
     df_city_lookup = pd.DataFrame(city_lookup_list)
 
     # Parallel computation for IATA code selection
-    IATA_O = Parallel(n_jobs=1)(
+    IATA_O = Parallel(n_jobs=num_core)(
         delayed(select_iata_code)(iso_code, df_city_lookup) for iso_code in df_HH['ISO_Travel']
     )
 
@@ -125,16 +125,16 @@ def select_destination(iso_code, df_city_lookup):
     else:
         return None  # Or your default value
     
-def destination_assign_init(df_HH, df_flight_EU, df_flight, EU_ISO):
+def destination_assign_init(df_HH, df_flight_EU, df_flight, EU_ISO, num_core):
 
 
     # Parallel computation for destination assignment
-    city_lookup_list = Parallel(n_jobs=1)(delayed(assign_destination)(HH_ISO, df_flight_EU, df_flight, EU_ISO) 
+    city_lookup_list = Parallel(n_jobs=num_core)(delayed(assign_destination)(HH_ISO, df_flight_EU, df_flight, EU_ISO) 
                                         for HH_ISO in df_HH['ISO_Travel'].unique())
     df_city_lookup = pd.DataFrame(city_lookup_list)
 
     # Parallel computation for destination selection
-    IATA_D = Parallel(n_jobs=1)(delayed(select_destination)(iso_code, df_city_lookup) 
+    IATA_D = Parallel(n_jobs=num_core)(delayed(select_destination)(iso_code, df_city_lookup) 
                                 for iso_code in df_HH['ISO_Travel'])
 
     return IATA_D
