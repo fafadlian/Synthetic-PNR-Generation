@@ -53,9 +53,9 @@ The project is divided into four main scripts, each responsible for a specific p
   2. Download the flight data from this [Google Drive link](https://drive.google.com/drive/folders/1fZSUiiTk_jU4gRSipsJrQ23uyKOqeQOs) and place it inside the `data/flightData` directory in your working directory.
   3. Open a terminal and navigate to your working directory.
   4. Run the following command to install the required dependencies:
-    ```
-    pip install -r requirements.txt
-    ```
+  ```
+  pip install -r requirements.txt
+  ```
 
 
 
