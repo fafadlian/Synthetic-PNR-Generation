@@ -41,10 +41,38 @@ The project is divided into four main scripts, each responsible for a specific p
   - **Booking Management:** Handles the booking process by reserving the selected flights for the passengers and updating the booking status.
 
 
+  ## Prerequisite
+  Before running the script, ensure you have the following:
+  1. Python 3.x installed on your system.
+  2. Anaconda or pip installed.
+  3. An Anaconda environment.
+
+  ## Installation
+  To install and set up the project, follow these steps:
+  1. Download or clone the repository to your local machine.
+  2. Download the flight data from this [Google Drive link](https://drive.google.com/drive/folders/1fZSUiiTk_jU4gRSipsJrQ23uyKOqeQOs) and place it inside the `data/flightData` directory in your working directory.
+  3. Open a terminal and navigate to your working directory.
+  4. Run the following command to install the required dependencies:
+    ```
+    pip install -r requirements.txt
+    ```
+
+
+
+
   ## Execution Order
   To run the Synthetic PNR Data Project, follow the below execution order:
 
-  1. Run the `GeneratePopulation.py` script. This script generates a synthetic population database with detailed demographic and geographic information.
+  1. The first part of code that we need to run is the Synthetic Population Generation
+  ```
+  python SynthMain.py --data_dir <data_directory> --hh_count <household_count> --num_cores <num_cores>    
+  ```
+  Replace <data_directory> with the root directory of your data, <household_count> with the estimated number of households to generate, and <num_cores> with the number of cores to use for parallel processing. The --num_cores argument is optional and defaults to -1, which means all available cores will be used.
+
+  For example:
+  ```
+  python SynthMain.py --data_dir data --hh_count 50 --num_cores 4  
+  ```
 
   2. After generating the population database, run the `GroupingBooking.py` script. This script simulates passenger behavior and generates booking groups based on the generated population database.
 
