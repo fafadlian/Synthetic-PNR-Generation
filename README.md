@@ -112,6 +112,10 @@ Individuals within households are identified in the 'P_ID' column, formatted as 
 | T2 (SOI)| Child travels with an adult with different surnames |
 
 
+### 4. SOI/POI Identifier
+SOI/POI can be identified from their P_ID and HHID that should start with 'SOI'
+
+
 ## Contributing
 Contributions to the project are welcome. Please ensure to follow best practices for code contributions, including using clear and descriptive commit messages and creating pull requests for review.
 
