@@ -11,7 +11,7 @@ Before running the script, ensure you have the following:
 ## Installation
 To install and set up the project, follow these steps:
 1. Download or clone the repository to your local machine.
-2. Download the data from this [Google Drive link](https://drive.google.com/drive/folders/1fZSUiiTk_jU4gRSipsJrQ23uyKOqeQOs) and place it inside your working directory.
+2. Download the data folder from this [Google Drive link](https://drive.google.com/drive/folders/1fZSUiiTk_jU4gRSipsJrQ23uyKOqeQOs) and place it inside your working directory.
 3. Open a terminal and navigate to your working directory.
 4. Run the following command to install the required dependencies:
 ```
