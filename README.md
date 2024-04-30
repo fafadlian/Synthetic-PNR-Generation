@@ -7,7 +7,6 @@ This project simulates the generation and management of synthetic data related t
 Before running the script, ensure you have the following:
 1. Python 3.9 installed on your system. (It should also work on the later version)
 2. Anaconda or pip installed.
-3. An Anaconda environment.
 
 ## Installation
 To install and set up the project, follow these steps:
