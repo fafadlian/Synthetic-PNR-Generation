@@ -2,6 +2,7 @@
 data/XML_Test/
 data/populationData
 /data/
+/data/synthesizedData/
 
 # Ignore large files
 data/flightData/EU_flight_new.csv
