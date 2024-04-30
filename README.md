@@ -48,7 +48,7 @@ python ABMGroupBook_main.py --data_dir <data_directory> --num_cores <num_cores>
 
   For example:
   ```
-  python Synth_main.py --data_dir 'data' --num_cores 1  
+  python ABMGroupBook_main.py --data_dir 'data' --num_cores 1  
   ```
   The result of you synthesized data can be seen inside `synthesizedData` folder  with name `group.csv` and `behaviour_complete.csv`
 
@@ -61,7 +61,7 @@ python SynthSOI_main.py --data_dir <data_directory> --hh_count <household_count>
 
   For example:
   ```
-  python Synth_main.py --data_dir 'data' --hh_count 50 --num_cores 4  
+  python SynthSOI_main.py --data_dir 'data' --hh_count 10 --num_cores 4  
   ```
   The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_SOI.csv` and `HH_SOI.csv`.
 
@@ -75,7 +75,7 @@ python ABMFlight_main.py --data_dir <data_directory>
 
   For example:
   ```
-  python Synth_main.py --data_dir 'data' 
+  python ABMFlight_main.py --data_dir 'data' 
   ```
   The result of you synthesized data can be seen inside `synthesizedData` folder  with name `bookings_complete.csv` and `flights_complete.csv`
 ### 5. Build XML PNR File
