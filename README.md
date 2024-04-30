@@ -63,7 +63,7 @@ python SynthSOI_main.py --data_dir <data_directory> --hh_count <household_count>
   ```
   python SynthSOI_main.py --data_dir 'data' --hh_count 10 --num_cores 4  
   ```
-  The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_SOI.csv` and `HH_SOI.csv`.
+  The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_SOI.csv`, `group_SOI.csv` and `HH_SOI.csv`.
 
 
 ### 4. Run Flight Selection
