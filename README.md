@@ -5,14 +5,14 @@ This project simulates the generation and management of synthetic data related t
 
 ## Prerequisite
 Before running the script, ensure you have the following:
-1. Python 3.x installed on your system.
+1. Python 3.9 installed on your system.
 2. Anaconda or pip installed.
 3. An Anaconda environment.
 
 ## Installation
 To install and set up the project, follow these steps:
 1. Download or clone the repository to your local machine.
-2. Download the flight data from this [Google Drive link](https://drive.google.com/drive/folders/1fZSUiiTk_jU4gRSipsJrQ23uyKOqeQOs) and place it inside the `data/flightData` directory in your working directory.
+2. Download the data from this [Google Drive link](https://drive.google.com/drive/folders/1fZSUiiTk_jU4gRSipsJrQ23uyKOqeQOs) and place it inside your working directory.
 3. Open a terminal and navigate to your working directory.
 4. Run the following command to install the required dependencies:
 ```
@@ -34,7 +34,7 @@ python Synth_main.py --data_dir <data_directory> --hh_count <household_count> --
 
   For example:
   ```
-  python SynthMain.py --data_dir 'data' --hh_count 50 --num_cores 4  
+  python Synth_main.py --data_dir 'data' --hh_count 50 --num_cores 4  
   ```
   The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_data.csv` and `HH_data.csv`.
 
@@ -49,7 +49,7 @@ python ABMGroupBook_main.py --data_dir <data_directory> --num_cores <num_cores>
 
   For example:
   ```
-  python SynthMain.py --data_dir 'data' --num_cores 1  
+  python Synth_main.py --data_dir 'data' --num_cores 1  
   ```
   The result of you synthesized data can be seen inside `synthesizedData` folder  with name `group.csv` and `behaviour_complete.csv`
 
@@ -62,7 +62,7 @@ python SynthSOI_main.py --data_dir <data_directory> --hh_count <household_count>
 
   For example:
   ```
-  python SynthMain.py --data_dir 'data' --hh_count 50 --num_cores 4  
+  python Synth_main.py --data_dir 'data' --hh_count 50 --num_cores 4  
   ```
   The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_SOI.csv` and `HH_SOI.csv`.
 
@@ -76,7 +76,7 @@ python ABMFlight_main.py --data_dir <data_directory>
 
   For example:
   ```
-  python SynthMain.py --data_dir 'data' 
+  python Synth_main.py --data_dir 'data' 
   ```
   The result of you synthesized data can be seen inside `synthesizedData` folder  with name `bookings_complete.csv` and `flights_complete.csv`
 ### 5. Build XML PNR File
@@ -91,12 +91,32 @@ For example:
 
   Make sure to execute the scripts in the specified order to ensure the proper functioning of the Synthetic PNR Data Project.
 
+## Additional Information
+
+### 1. Household Identifier
+Households are uniquely identified in the 'HHID' column, formatted as `<ISO>_<NUMBER>`. Here, `<ISO>` is the ISO code of the country, and `<NUMBER>` is a distinct number within that country. 
+Example: `AUT_1` represents Household no1 in Austria.
+
+### 2. Person Identifier
+Individuals within households are identified in the 'P_ID' column, formatted as `<HHID>_<NUMBER>`. Here, `<HHID>` is the household ID (e.g., `AUT_1`) and `<NUMBER>` is a distinct number representing a person in the household. The person with `<NUMBER> = 1` is considered the head of the household. `AUT_1_1` represent a head of household in of no1 household in Austria.
+
+### 3. Household Type (HHType)
+
+| HHType  | Description                                  |
+|---------|----------------------------------------------|
+| 1A      | Single adult with child/children             |
+| 1B      | Single adult without child/children          |
+| 2A      | Couple adult with child/children             |
+| 2B      | Couple adult without child/children          |
+| 3AB     | Other                                        |
+| T1 (SOI)| Child travels alone                          |
+| T2 (SOI)| Child travels with an adult with different surnames |
 
 
 ## Contributing
 Contributions to the project are welcome. Please ensure to follow best practices for code contributions, including using clear and descriptive commit messages and creating pull requests for review.
 
-## License
+# Synthetic PNR Data Project
 
 
  

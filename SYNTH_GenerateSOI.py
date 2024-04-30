@@ -57,14 +57,13 @@ class POI_Generation:
         - DataFrame with household information.
         """
 
-        # HH_num	GenderHOH	AgeHOH	SizeHH	HHID	HH_ISO	HHType	Lang	Lang_P	Surname	Address	PostCode	Country	NationalityLP	NationalityNat
         households = []
         available_langs = df_city['Lang'].tolist()
         for i in range(num_households):
             HH_ISO = choice(df_city['HH_ISO'].tolist())
             HHID = f"POI_{i}"
             gender = choice(["M", "F"])
-            HHType = choice(["T1", "T2"])
+            HHType = choice(["T1", "T2"]) #T1: children travels alone, T2:children travels with adult with different surnames
             age = randrange(5, 17) if HHType == 'T1' else randrange(28, 56)
             sizeHH = 1 if HHType == 'T1' else 2
             
@@ -138,7 +137,7 @@ class POI_Generation:
                 gender = household_row['GenderHOH']
             else:
                 age = randrange(5, 17)
-                gender = choices(['M', 'F'], weights=[0.3, 0.7])[0]
+                gender = choice(['M', 'F'])
 
             first_name = faker_gen.first_name_male() if gender == 'M' else faker_gen.first_name_female()
             surname = faker_gen.last_name()
