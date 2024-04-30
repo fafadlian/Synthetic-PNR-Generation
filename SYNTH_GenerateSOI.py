@@ -258,6 +258,6 @@ class POI_Generation:
 
         df_HH.to_csv(os.path.join(self.data_dir, 'synthesizedData/HH_SOI.csv'), index=False)
         df_passengers.to_csv(os.path.join(self.data_dir, 'synthesizedData/person_SOI.csv'), index=False)
-        df_group.to_csv(os.path.join(self.data_dir, 'synthesizedData/group_soi.csv'), index=False)
+        df_group.to_csv(os.path.join(self.data_dir, 'synthesizedData/group_SOI.csv'), index=False)
         return df_passengers
 

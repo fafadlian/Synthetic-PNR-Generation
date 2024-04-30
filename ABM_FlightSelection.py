@@ -20,7 +20,7 @@ class FlightBookingSystem:
 
 
         # check if SOI file exists
-        if os.path.exists(os.path.join(self.data_dir, 'synthesizedData/group_soi.csv')):
+        if os.path.exists(os.path.join(self.data_dir, 'synthesizedData/group_SOI.csv')):
             self.df_book = pd.concat([self.df_book, self.df_book_soi], ignore_index=True)
             print("SOI file exists")
 
