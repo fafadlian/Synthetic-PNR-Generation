@@ -116,7 +116,8 @@ Individuals within households are identified in the 'P_ID' column, formatted as 
 ## Contributing
 Contributions to the project are welcome. Please ensure to follow best practices for code contributions, including using clear and descriptive commit messages and creating pull requests for review.
 
-# Synthetic PNR Data Project
+## License
+This project is licensed under the [MIT License](LICENSE).
 
 
  

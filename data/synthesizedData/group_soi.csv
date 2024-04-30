@@ -1,0 +1,2 @@
+init_id,list_of_passengers,route,num_in_party,BookingAgency,BookingDay,Unnamed: 0,IATA_O,IATA_D,HH_ISO_D,region_D,HH_ISO_O,region_O,LegHH_ISO,LegRegion,Origin,Destination,fixRoute,Leg_fixRoute,stay_day,airport_itinerary_out,full_routes
+LHR-CRL-SOI-ID0,['POI_3_1'],LHR-CRL,1,BookingAgency2,26,1289.0,LHR,CRL,BEL,Europe,GBR,Europe,GBR-BEL,Europe-Europe,LHR,CRL,LHR->MUC->BUD->CRL,3,,"['LHR', 'MUC', 'BUD', 'CRL']","['LHR-MUC', 'MUC-BUD', 'BUD-CRL']"
