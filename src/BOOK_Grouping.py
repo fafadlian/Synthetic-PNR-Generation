@@ -100,16 +100,36 @@ def merge_and_process_route(df, route):
     df = df[~df['Chosen_Route'].isna()]
     return df
 
+#Previous Version Code
+# def fill_na_and_calculate_inverse_probabilities(df):
+#     """Handle NaN values and calculate inverse probabilities for fixing routes."""
+#     for i in range(1, 4):
+#         df[f'Leg_fixRoute_{i}'].fillna(0, inplace=True)
+#         df[f'Inv_Leg_fixRoute_{i}'] = 1 / df[f'Leg_fixRoute_{i}'].replace(0, np.inf)
+
+#     df['Total_Inverse'] = df[[f'Inv_Leg_fixRoute_{i}' for i in range(1, 4)]].sum(axis=1)
+#     for i in range(1, 4):
+#         df[f'Prob_fix_Route_{i}'] = df[f'Inv_Leg_fixRoute_{i}'] / df['Total_Inverse']
+#     return df
+
+#Change the code due to pandas warning for future version
 def fill_na_and_calculate_inverse_probabilities(df):
     """Handle NaN values and calculate inverse probabilities for fixing routes."""
     for i in range(1, 4):
-        df[f'Leg_fixRoute_{i}'].fillna(0, inplace=True)
-        df[f'Inv_Leg_fixRoute_{i}'] = 1 / df[f'Leg_fixRoute_{i}'].replace(0, np.inf)
+        # Using .loc to correctly reference and fill NaN values
+        df.loc[:, f'Leg_fixRoute_{i}'] = df[f'Leg_fixRoute_{i}'].fillna(0)
+        # Calculate inverse, handling divide by zero by replacing 0 with infinity
+        df.loc[:, f'Inv_Leg_fixRoute_{i}'] = 1 / df[f'Leg_fixRoute_{i}'].replace(0, np.inf)
 
+    # Sum inverse probabilities across specified columns
     df['Total_Inverse'] = df[[f'Inv_Leg_fixRoute_{i}' for i in range(1, 4)]].sum(axis=1)
+    
+    # Calculate the probability of fixing the route
     for i in range(1, 4):
-        df[f'Prob_fix_Route_{i}'] = df[f'Inv_Leg_fixRoute_{i}'] / df['Total_Inverse']
+        df.loc[:, f'Prob_fix_Route_{i}'] = df[f'Inv_Leg_fixRoute_{i}'] / df['Total_Inverse']
+    
     return df
+
 
 def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weight, route, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight, num_cores):
     """Main function to integrate and manage traveller grouping analysis."""
@@ -172,12 +192,8 @@ def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weig
     df_combined['route'] = df_combined['init_id'].apply(extract_od)
     df_combined['num_in_party'] = df_combined['list_of_passengers'].str.len()
     df_combined = assign_agencies(df_combined, agencies, agency_weight)
-    print("2:", df_combined.shape)
     df_combined = assign_booking_days(df_combined, 30)
-    print("3:", df_combined.shape)
-    print("route", df_combined['route'].head())
     df_combined = merge_and_process_route(df_combined, route)
-    print("4:", df_combined.shape)
     df_combined.rename(columns={'Chosen_Route': 'fixRoute'}, inplace=True)
     df_combined.drop(columns=[f'fixRoute_{i}' for i in range(1, 4)] +
                             [f'Leg_fixRoute_{i}' for i in range(1, 4)] +
@@ -185,7 +201,6 @@ def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weig
                             ['Total_Inverse'] + [f'Prob_fix_Route_{i}' for i in range(1, 4)],
                     inplace=True)
     df_combined['Leg_fixRoute'] = df_combined['fixRoute'].str.count('->')
-    print("5:", df_combined.shape)
     # print(df_combined.columns)
     df_combined = stay_day_rt(df_combined, bus_stay_day, bus_stay_weight, vac_stay_day, vac_stay_weight)
 
