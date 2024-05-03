@@ -115,6 +115,9 @@ Individuals within households are identified in the 'P_ID' column, formatted as 
 ### 4. SOI/POI Identifier
 SOI/POI can be identified from their P_ID and HHID that should start with 'SOI'
 
+### 5. SOI/POI Generation base file
+To generate a new type/personas of SOI/POI can be conducted through editing/adding new rows in `data/POI_base.csv` file. Each row represent a persona of POI/SOI. M/F ratio, age range, nationalities, language, airport of origin, and stay day can be configured through the csv file.
+
 
 ## Contributing
 Contributions to the project are welcome. Please ensure to follow best practices for code contributions, including using clear and descriptive commit messages and creating pull requests for review.
