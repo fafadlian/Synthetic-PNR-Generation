@@ -108,8 +108,10 @@ Individuals within households are identified in the 'P_ID' column, formatted as 
 | 2A      | Couple adult with child/children             |
 | 2B      | Couple adult without child/children          |
 | 3AB     | Other                                        |
-| T1 (SOI)| Child travels alone                          |
-| T2 (SOI)| Child travels with an adult with different surnames |
+|  HTP (SOI)| Human Trafficking  Perpetrator                          |
+| HTV (SOI)| Human Trafficking Victim |
+| DSM (SOI)| Drugs Smugglers |
+| TRR (SOI)| Terrorist |
 
 
 ### 4. SOI/POI Identifier
