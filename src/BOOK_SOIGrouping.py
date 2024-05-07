@@ -24,6 +24,54 @@ def stay_day_rt(df, SOI_Type_order, poi_base):
     df['full_routes'] = df['airport_itinerary_out'].apply(lambda sublist: [f"{sublist[i]}-{sublist[i+1]}" for i in range(len(sublist)-1)] if len(sublist) >= 2 else [])
     return df
 
+def generate_luggage_data(df):
+    """
+    Generate number of luggage and total weight of luggage for flight bookings, incorporating:
+    - A variable number of luggage pieces close to the number of passengers.
+    - Weight influenced by length of stay.
+    - A maximum weight constraint based on the number in party.
+    - A probability of having no luggage especially for shorter stays.
+    
+    Parameters:
+    df (DataFrame): DataFrame containing flight booking information 
+    
+    Returns:
+    DataFrame: Original DataFrame with added 'num_luggage' and 'total_luggage_weight' columns.
+    """
+    base_weight_per_day = 2  # Base weight of 2 kg per day of stay
+    weight_fluctuation_factor = 0.1  # Weight fluctuation factor
+    max_weight_per_person = 20  # Maximum weight per person in kg
+    no_luggage_base_prob = 0.1  # Base probability of no luggage
+
+    # Calculate no luggage probability
+    df['no_luggage_prob'] = df['stay_day'].apply(lambda x: min(1, no_luggage_base_prob + 0.05 * (5 - x)))
+
+    # Determine number of luggage, possibly zero based on no luggage probability
+    df['num_luggage'] = df.apply(
+        lambda x: 0 if np.random.random() < x['no_luggage_prob'] else (x['num_in_party'] + np.random.choice([-1, 0, 1])),
+        axis=1
+    )
+
+    # Ensure that the number of luggage is not less than 0
+    df['num_luggage'] = df['num_luggage'].apply(lambda x: max(0, x))
+
+    # Calculate total luggage weight with constraints
+    df['total_luggage_weight'] = df.apply(
+        lambda x: min(
+            np.sum(
+                np.random.normal(
+                    loc=base_weight_per_day * x['stay_day'],
+                    scale=base_weight_per_day * x['stay_day'] * weight_fluctuation_factor,
+                    size=int(x['num_luggage'])
+                )
+            ),
+            max_weight_per_person * x['num_in_party']  # Max total weight constraint
+        ) if x['num_luggage'] > 0 else 0,
+        axis=1
+    )
+
+    return df
+
 
 def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weight, route, poi_base, num_cores):
     # SOI_Type_order = df_behaviour_complete['HHType'].tolist()
@@ -53,5 +101,7 @@ def grouping_init(df_behaviour_complete, select_behaviour, agencies, agency_weig
     df_SOI['Leg_fixRoute'] = df_SOI['fixRoute'].str.count('->')
     SOI_Type_order = df_SOI['list_of_passengers'].apply(lambda x: x[0].split('_')[0] if x and len(x) > 0 else None).tolist()
     df_SOI = stay_day_rt(df_SOI, SOI_Type_order, poi_base)
+    df_SOI = generate_luggage_data(df_SOI)
+
 
     return df_SOI
