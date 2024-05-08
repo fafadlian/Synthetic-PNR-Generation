@@ -16,17 +16,19 @@ from src import FLY_Booking as fb
 
 class POI_Generation:
         
-    def __init__(self, data_dir, hh_count, num_core):
+    def __init__(self, data_dir, hh_count, num_core, poi_base, output):
         self.data_dir = data_dir
         self.hh_count = hh_count
         self.num_core = num_core
+        self.poi_base = poi_base
+        self.output = output
 
         self.load_data()
         print("Group and Booking Initialized")
 
 
     def load_data(self):
-        self.poi_base = pd.read_csv(os.path.join(self.data_dir, 'POI_base.csv'))
+        self.poi_base = pd.read_csv(os.path.join(self.data_dir, self.poi_base))
         self.df_flight = pd.read_csv(os.path.join(self.data_dir, 'flightData/EU_flight_new.csv'))
         self.route = pd.read_csv(os.path.join(self.data_dir, 'flightData/route_all.csv'))
         self.crosswalk = pd.read_csv(os.path.join(self.data_dir, 'geoCrosswalk/GeoCrossWalkMed.csv'))
@@ -290,8 +292,24 @@ class POI_Generation:
         df_group = bksoi.grouping_init(df_behaviour_complete, select_behaviour, self.agencies, self.agency_weight, self.route, poi_base_clean, 1)
 
         print("Saving SOI/POI data...")
-        df_HH.to_csv(os.path.join(self.data_dir, 'synthesizedData/HH_SOI.csv'), index=False)
-        df_passengers.to_csv(os.path.join(self.data_dir, 'synthesizedData/person_SOI.csv'), index=False)
-        df_group.to_csv(os.path.join(self.data_dir, 'synthesizedData/group_SOI.csv'), index=False)
+        # Construct filenames using a dynamic variable `self.output`
+        hh_filename = f"HH_SOI_{self.output}.csv"
+        passengers_filename = f"person_SOI_{self.output}.csv"
+        group_filename = f"group_SOI_{self.output}.csv"
+
+        # Construct file paths
+        hh_path = os.path.join(self.data_dir, 'synthesizedData', hh_filename)
+        passengers_path = os.path.join(self.data_dir, 'synthesizedData', passengers_filename)
+        group_path = os.path.join(self.data_dir, 'synthesizedData', group_filename)
+
+        # Save DataFrames to CSV
+        df_HH.to_csv(hh_path, index=False)
+        df_passengers.to_csv(passengers_path, index=False)
+        df_group.to_csv(group_path, index=False)
+
+        # Optionally print the paths to confirm where files are saved
+        print(f"Household data saved to {hh_path}")
+        print(f"Passenger data saved to {passengers_path}")
+        print(f"Group data saved to {group_path}")
         return df_passengers
 

@@ -54,16 +54,16 @@ python ABMGroupBook_main.py --data_dir <data_directory> --num_cores <num_cores>
 
 ### 3. Run POI/SOI Generation Code
 ```
-python SynthSOI_main.py --data_dir <data_directory> --hh_count <household_count> --num_cores <num_cores>    
+python SynthSOI_main.py --data_dir <data_directory> --hh_count <household_count> --num_cores <num_cores> --poi_base <poi_base> --output <output>
 ```
     
-  Replace <data_directory> with the root directory of our data, <household_count> with the estimated number of households to generate, and <num_cores> with the number of cores to use for parallel processing. The --num_cores argument is optional and defaults to -1, which means all available cores will be used.
+  Replace <data_directory> with the root directory of our data, <household_count> with the estimated number of households to generate, and <num_cores> with the number of cores to use for parallel processing. The --num_cores argument is optional and defaults to -1, which means all available cores will be used. Replace <poi_base> with your POI/SOI configuration file. Replace <output> with the output mark of your output version
 
   For example:
   ```
-  python SynthSOI_main.py --data_dir 'data' --hh_count 10 --num_cores 4  
+  python SynthSOI_main.py --data_dir 'data' --hh_count 10 --num_cores 4 --poi_base 'poi_base.csv' --output 'output_mark1'
   ```
-  The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_SOI.csv`, `group_SOI.csv` and `HH_SOI.csv`.
+  The result of your synthesized data can be found inside the `synthesizedData` folder with the names `person_SOI_output_mark1.csv`, `group_SOI_output_mark1.csv` and `HH_SOI_output_mark1.csv`.
 
 
 ### 4. Run Flight Selection
